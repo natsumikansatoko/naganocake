@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_17_091118) do
+ActiveRecord::Schema.define(version: 2022_07_17_093645) do
 
   create_table "adderesses", force: :cascade do |t|
     t.integer "customer_id", null: false
@@ -33,6 +33,20 @@ ActiveRecord::Schema.define(version: 2022_07_17_091118) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "cart_items", force: :cascade do |t|
+    t.integer "item_id", null: false
+    t.integer "customer_id", null: false
+    t.integer "amount", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "genres", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "items", force: :cascade do |t|
     t.integer "genre_id", null: false
     t.string "name", null: false
@@ -40,6 +54,29 @@ ActiveRecord::Schema.define(version: 2022_07_17_091118) do
     t.integer "price", null: false
     t.boolean "is_active", default: true, null: false
     t.string "image_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "order_items", force: :cascade do |t|
+    t.integer "item_id", null: false
+    t.integer "order_id", null: false
+    t.integer "ordered_price", null: false
+    t.integer "amount", null: false
+    t.integer "making_status", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer "customer_id", null: false
+    t.string "postal_code", null: false
+    t.string "address", null: false
+    t.string "name", null: false
+    t.integer "order_status", default: 0, null: false
+    t.integer "shipping_fee", null: false
+    t.integer "amount_billed", null: false
+    t.integer "payment_method", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
