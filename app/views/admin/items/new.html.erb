@@ -1,2 +1,23 @@
-<h1>Admin::Items#new</h1>
-<p>Find me in app/views/admin/items/new.html.erb</p>
+<h4 class="m-5 w-25 bg-light text-center">商品新規登録</h2>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-10 px-sm-0">
+      <%= form_with model: @item, url: admin_items_path do |f| %>
+      <table>
+        <tr>
+          <th><%= f.label '商品画像' %></th>
+          <td><%= f.attachment_field :image %></td>
+        </tr>
+        <tr>
+          <th><%= f.label '商品名' %></th>
+          <td><%= f.text_field :name, :placeholder => "商品名", size: "40x1" %></td>
+        </tr>
+        <tr valign="top">
+          <th><%= f.label '商品説明' %></th>
+          <td><%= f.text_area :introduction, :placeholder => "ここに説明文を記述します", size: "40x5" %></td>
+        </tr>
+      </table>
+      <% end %>
+    </div>
+  </div>
+</div>
