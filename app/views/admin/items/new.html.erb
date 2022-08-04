@@ -16,7 +16,27 @@
           <th><%= f.label '商品説明' %></th>
           <td><%= f.text_area :introduction, :placeholder => "ここに説明文を記述します", size: "40x5" %></td>
         </tr>
+        <tr>
+          <th><%= f.label 'ジャンル' %></th>
+          <td><%= f.collection_select :genre_id, Genre.all, :id, :name, :prompt => "-- 選択してください --", size: 40 %></td>
+        </tr>
+        <tr>
+          <th><%= f.label '税抜価格' %></th>
+          <td><%= f.text_field :price, :placeholder => "1000" %>円</td>
+        </tr>
+        <tr>
+          <th><%= f.label '販売ステータス',class: "mr-3" %></th>
+          <td>
+            <%= f.radio_button :is_active, true, cheked: true %>
+            <%= f.label :is_active, "販売中" %>
+            <%= f.radio_button :is_active, false %>
+            <%= f.label :is_active, "販売停止中" %>
+          </td>
+        </tr>
       </table>
+      <div class="d-grid gap-2 col-6 mx-auto">
+        <%= f.submit "新規登録", class: "btn btn-success" %></th>
+      </div>
       <% end %>
     </div>
   </div>
